@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import Link from "next/link";
 import Image from "next/image";
-import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const menuItems = [
   { name: "Graphic Design", href: "/graphic-design" },
@@ -79,19 +78,16 @@ export default function Navbar() {
 
   return (
     <>
+
         <header 
             ref={headerRef}
-            className={`fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-full z-[50] transition-all duration-500 border
-                ${scrolled 
-                    ? 'bg-white/80 dark:bg-black/60 backdrop-blur-xl border-black/5 dark:border-white/10 shadow-lg py-3 px-6' 
-                    : 'bg-transparent border-transparent py-5 px-6'
-                }`}
+            className="fixed top-0 left-0 w-full z-[50] py-6"
         >
-            <div className="flex items-center justify-between">
+            <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 flex items-center justify-between">
                 
-                {/* Logo */}
+                {/* Left: Logo (Icon Only) */}
                 <Link href="/" className="relative z-[60] group">
-                    <div className="relative w-10 h-10 md:w-12 md:h-12 transition-transform duration-300 group-hover:scale-110">
+                    <div className="relative w-12 h-12 transition-transform duration-300 group-hover:scale-110">
                         <Image 
                             src="/logo.png" 
                             alt="Techmire" 
@@ -99,50 +95,69 @@ export default function Navbar() {
                             className="object-contain dark:invert-0 invert"
                             priority
                         />
-                        {/* Glow for Logo */}
-                        <div className="absolute inset-0 bg-[#EF6524] blur-[20px] opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-full" />
                     </div>
                 </Link>
 
-                {/* Desktop Menu */}
-                <nav className="hidden xl:flex items-center gap-1 bg-white/50 dark:bg-white/5 backdrop-blur-md px-2 py-1.5 rounded-full border border-black/5 dark:border-white/5">
-                    {menuItems.map((item) => (
-                        <Link
-                            key={item.name}
-                            href={item.href}
-                            className="px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white relative group overflow-hidden rounded-full transition-colors"
-                        >
-                            <span className="relative z-10">{item.name}</span>
-                            <span className="absolute inset-0 bg-[#EF6524]/10 dark:bg-[#EF6524]/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
-                        </Link>
-                    ))}
+                {/* Center: Nav Pill - Transparent Glass */}
+                <nav className="hidden xl:flex absolute left-1/2 -translate-x-1/2 items-center gap-1 p-1 bg-white/10 backdrop-blur-md rounded-full border border-white/10 z-[60]">
+                    
+                    {/* Services Dropdown */}
+                    <div className="relative group px-4 py-2 rounded-full hover:bg-white/10 transition-all cursor-pointer">
+                        <button className="text-sm font-medium text-white/90 group-hover:text-white flex items-center gap-1">
+                            Services
+                            <svg className="w-4 h-4 transition-transform group-hover:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                        </button>
+                        
+                        {/* Dropdown Menu */}
+                        <div className="absolute top-full text-left left-1/2 -translate-x-1/2 mt-4 w-64 p-2 bg-[#1A1A1A] border border-white/10 rounded-2xl shadow-xl opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300 transform origin-top">
+                            <div className="flex flex-col gap-1">
+                                {[
+                                    { name: "Graphic Design", href: "/graphic-design" },
+                                    { name: "Digital Marketing", href: "/digital-marketing" },
+                                    { name: "Web Development", href: "/web-development" },
+                                    { name: "Software Development", href: "/software-development" },
+                                    { name: "SEO", href: "/seo" }
+                                ].map((service) => (
+                                    <Link 
+                                        key={service.name}
+                                        href={service.href}
+                                        className="block px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+                                    >
+                                        {service.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Standard Links - Active state simulation (e.g. 'Our Team' active for demo if needed, or just hover styles) */}
+                    <Link href="/team" className="px-5 py-2 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">Our Team</Link>
+                    <Link href="/about" className="px-5 py-2 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">About Us</Link>
+                    <Link href="/blogs" className="px-5 py-2 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">Blogs</Link>
                 </nav>
 
-                {/* Right Side Actions */}
+                {/* Right: CTA & Mobile Trigger */}
                 <div className="flex items-center gap-4 relative z-[60]">
-                    <div className="hidden xl:block">
-                        <ThemeToggle />
-                    </div>
-
+                    
+                    {/* CTA Button - "Let's Talk Us" (Back to Right) */}
                     <Link 
                         href="/contact"
-                        className="hidden xl:flex items-center justify-center px-6 py-2.5 bg-[#EF6524] text-white text-xs font-black uppercase tracking-widest rounded-full hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_4px_14px_0_rgba(239,101,36,0.39)] hover:shadow-[0_6px_20px_rgba(239,101,36,0.23)]"
+                        className="hidden md:flex items-center justify-center px-6 py-3 bg-[#EF6524] text-white text-sm font-bold rounded-full hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_4px_14px_0_rgba(239,101,36,0.39)]"
                     >
-                        Get Quote
+                        Let's Talk Us
                     </Link>
 
-                    {/* Mobile Menu Trigger + Theme Toggle */}
-                    <div className="xl:hidden flex items-center gap-4">
-                        <ThemeToggle />
-                        <button 
-                            onClick={toggleMenu}
-                            className="group flex flex-col items-end gap-[5px] p-2"
-                        >
-                            <span className={`w-8 h-[2px] bg-black dark:bg-white group-hover:bg-[#EF6524] transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
-                            <span className={`w-6 h-[2px] bg-black dark:bg-white group-hover:bg-[#EF6524] transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`} />
-                            <span className={`w-4 h-[2px] bg-black dark:bg-white group-hover:bg-[#EF6524] transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-[7px] w-8' : ''}`} />
-                        </button>
-                    </div>
+                    {/* Hamburger Trigger - Mobile/Tablet Only */}
+                    <button 
+                        onClick={toggleMenu}
+                        className="xl:hidden w-12 h-12 flex items-center justify-center bg-[#EF6524] rounded-full hover:scale-110 transition-transform shadow-[0_4px_14px_0_rgba(239,101,36,0.39)]"
+                    >
+                         <div className="flex flex-col gap-[5px] items-center">
+                            <span className={`w-5 h-[2px] bg-white transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
+                            <span className={`w-5 h-[2px] bg-white transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`} />
+                            <span className={`w-5 h-[2px] bg-white transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+                         </div>
+                    </button>
                 </div>
             </div>
         </header>
@@ -155,13 +170,13 @@ export default function Navbar() {
         >
             <div className="absolute top-0 right-0 w-[80vw] h-[80vw] bg-[#EF6524]/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             
-            <nav className="flex flex-col gap-6 text-center relative z-10 px-6 max-h-[85vh] overflow-y-auto">
+            <nav className="flex flex-col gap-6 text-center relative z-10 px-6 max-h-[85vh] overflow-y-auto w-full">
                 {menuItems.map((item, i) => (
                     <Link
                         key={item.name}
                         href={item.href}
                         ref={(el) => { itemsRef.current[i] = el; }}
-                        className="text-4xl font-black text-black/90 dark:text-white hover:text-[#EF6524] transition-colors uppercase tracking-tight"
+                        className="text-3xl md:text-5xl font-black text-black/90 dark:text-white hover:text-[#EF6524] transition-colors uppercase tracking-tight"
                         onClick={() => setIsOpen(false)}
                     >
                         {item.name}
@@ -169,7 +184,7 @@ export default function Navbar() {
                 ))}
                  <Link
                     href="/contact"
-                    className="mt-8 px-8 py-4 bg-[#EF6524] text-white text-xl font-bold uppercase tracking-widest rounded-full self-center shadow-lg active:scale-95 transition-transform"
+                    className="mt-8 px-10 py-5 bg-[#EF6524] text-white text-xl font-bold uppercase tracking-widest rounded-full self-center shadow-lg active:scale-95 transition-transform"
                     onClick={() => setIsOpen(false)}
                  >
                     Get a Quote
