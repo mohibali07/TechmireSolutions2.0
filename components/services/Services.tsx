@@ -101,7 +101,7 @@ export default function Services() {
             {/* Background Atmosphere & Spotlight */}
              <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(circle_at_center,black,transparent_80%)] -z-10 opacity-20" />
             
-            <div ref={triggerRef} className="w-full h-screen flex flex-col justify-center relative z-10">
+            <div ref={triggerRef} className="w-full h-auto lg:h-screen flex flex-col justify-center relative z-10">
                 
                 {/* Header */}
                 <div className="container mx-auto px-6 md:px-12 lg:px-24 mb-16 md:mb-24 flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
@@ -119,11 +119,11 @@ export default function Services() {
                     </p>
                 </div>
 
-                {/* Horizontal Scroll Container */}
-                <div className="w-[100vw] overflow-hidden">
+                {/* Horizontal Scroll Container (Desktop) / Vertical (Mobile) */}
+                <div className="w-full lg:w-[100vw] overflow-visible lg:overflow-hidden">
                      <div 
                         ref={scrollContainerRef}
-                        className="flex gap-8 w-max px-6 md:px-12 lg:px-24"
+                        className="flex flex-col lg:flex-row gap-8 lg:gap-8 w-full lg:w-max px-6 md:px-12 lg:px-24"
                      >
                         {services.map((service, index) => (
                             <ServiceCard 

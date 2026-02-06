@@ -102,7 +102,7 @@ export default function AboutSection() {
     const headlineText = "We are the architects of the digital future. We build immersive experiences that transcend the ordinary.";
 
     return (
-        <section ref={containerRef} className="relative w-full py-40 bg-[#050505] text-white overflow-hidden cursor-none">
+        <section ref={containerRef} className="relative w-full py-20 lg:py-40 bg-[#050505] text-white overflow-hidden cursor-none">
             
             {/* Spotlight Effect */}
             <div 

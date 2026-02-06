@@ -18,7 +18,7 @@ export default function ServiceCard({ id, title, description, href, index, icon 
 
     return (
         <div 
-            className="group relative w-[320px] md:w-[450px] h-[550px] md:h-[650px] flex-shrink-0 rounded-[2rem] overflow-hidden border border-white/10 bg-[#111]/40 backdrop-blur-md transition-all duration-700 hover:border-[#EF6524]/50 hover:shadow-[0_0_40px_-10px_rgba(239,101,36,0.2)] hover:-translate-y-2"
+            className="group relative w-full md:w-[450px] h-[450px] md:h-[650px] flex-shrink-0 rounded-[2rem] overflow-hidden border border-white/10 bg-[#111]/40 backdrop-blur-md transition-all duration-700 hover:border-[#EF6524]/50 hover:shadow-[0_0_40px_-10px_rgba(239,101,36,0.2)] hover:-translate-y-2"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
