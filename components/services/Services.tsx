@@ -13,35 +13,35 @@ const services = [
         id: "graphic-design",
         title: "Graphic Design",
         description: "Visual storytelling that captivates your audience. From branding to marketing materials, we create stunning visuals.",
-        href: "/graphic-design",
+        href: "/services/graphic-design",
         icon: <Palette className="w-8 h-8 text-white" />
     },
     {
         id: "digital-marketing",
         title: "Digital Marketing",
         description: "Data-driven strategies to grow your reach. We handle SEO, PPC, and social media to maximize ROI.",
-        href: "/digital-marketing",
+        href: "/services/digital-marketing",
         icon: <Megaphone className="w-8 h-8 text-white" />
     },
     {
         id: "web-development",
         title: "Web Development",
         description: "High-performance websites built for the modern web. Fast, responsive, and scalable solutions.",
-        href: "/web-development",
+        href: "/services/web-development",
         icon: <Globe className="w-8 h-8 text-white" />
     },
     {
         id: "software-development",
         title: "Software Development",
         description: "Custom software solutions tailored to your business needs. We build robust and secure applications.",
-        href: "/software-development",
+        href: "/services/software-development",
         icon: <Code className="w-8 h-8 text-white" />
     },
     {
         id: "seo",
         title: "SEO Optimization",
         description: "Rank higher and get found exactly when your customers are looking. Comprehensive organic search strategies.",
-        href: "/seo",
+        href: "/services/seo",
         icon: <Search className="w-8 h-8 text-white" />
     }
 ];
